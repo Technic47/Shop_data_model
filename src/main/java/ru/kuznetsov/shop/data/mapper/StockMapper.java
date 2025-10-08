@@ -38,7 +38,7 @@ public abstract class StockMapper implements AbstractMapper<Stock, StockDto> {
 
     @Named("storeNameToEntity")
     protected Store storeNameToEntity(String name) {
-        return storeService.findByName(name);
+        return storeService.findEntityByName(name);
     }
 
     @Named("idToProduct")

@@ -25,7 +25,7 @@ public abstract class AbstractService
 
     public final static String ID_FIELD = "id";
     protected final R repository;
-    private final M entityMapper;
+    protected final M entityMapper;
     @Autowired
     private ObjectMapper objectMapper;
 

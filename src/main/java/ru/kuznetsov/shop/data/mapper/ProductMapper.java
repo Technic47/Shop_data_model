@@ -24,6 +24,6 @@ public abstract class ProductMapper implements AbstractMapper<Product, ProductDt
 
     @Named("nameToEntity")
     protected ProductCategory entityToEntity(String name) {
-        return productCategoryService.findByName(name);
+        return productCategoryService.findEntityByName(name);
     }
 }

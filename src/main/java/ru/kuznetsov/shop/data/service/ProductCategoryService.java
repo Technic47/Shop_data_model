@@ -26,9 +26,13 @@ public class ProductCategoryService extends AbstractService<ProductCategory, Pro
         super.deleteById(id);
     }
 
-    public ProductCategory findByName(String name) {
+    public ProductCategory findEntityByName(String name) {
         return repository
                 .findByName(name)
                 .orElseThrow(RuntimeException::new);
+    }
+
+    public ProductCategoryDto findByName(String name) {
+        return entityMapper.entityToDto(findEntityByName(name));
     }
 }
