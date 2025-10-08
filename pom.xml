@@ -101,6 +101,28 @@
                     <finalName>Data_model</finalName>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <groupId>ru.kuznetsov</groupId>
+                    <artifactId>Data_model</artifactId>
+                    <version>1.0.0</version>
+                    <packaging>jar</packaging>
+                    <file>../Data_model.jar</file>
+                    <generatePom>true</generatePom>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install-jar-lib</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>install</phase>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <finalName>Data_model</finalName>
     </build>
