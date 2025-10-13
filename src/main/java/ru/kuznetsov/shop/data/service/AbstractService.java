@@ -59,8 +59,7 @@ public abstract class AbstractService
     }
 
     public DTO update(DTO dto) {
-        repository.findById(dto.getId())
-                .orElseThrow(() -> new RuntimeException(String.format("%s с id=%s не существует", getEntitySimpleName(), dto.getId())));
+        findEntityById(dto.getId());
 
         dto.setUpdated(LocalDateTime.now());
         var geoZoneEntity = repository
@@ -85,8 +84,7 @@ public abstract class AbstractService
     }
 
     public DTO patchUpdate(Long id, Map<String, Object> fields) {
-        E entity = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException(String.format("%s с id=%s не существует", getEntitySimpleName(), id)));
+        E entity = findEntityById(id);
         return patchUpdate(entity, fields);
     }
 
@@ -108,6 +106,6 @@ public abstract class AbstractService
 
     public E findEntityById(Long id) {
         return repository.findById(id)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(() -> new RuntimeException(String.format("%s с id=%s не существует", getEntitySimpleName(), id)));
     }
 }
