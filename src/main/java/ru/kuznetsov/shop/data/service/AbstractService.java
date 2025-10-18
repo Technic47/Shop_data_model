@@ -6,9 +6,9 @@ import org.hibernate.type.internal.ParameterizedTypeImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.kuznetsov.shop.data.dto.AbstractDto;
 import ru.kuznetsov.shop.data.mapper.AbstractMapper;
 import ru.kuznetsov.shop.data.model.AbstractEntity;
+import ru.kuznetsov.shop.represent.dto.AbstractDto;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

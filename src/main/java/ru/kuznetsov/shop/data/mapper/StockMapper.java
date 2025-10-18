@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.kuznetsov.shop.data.dto.StockDto;
+import ru.kuznetsov.shop.represent.dto.StockDto;
 import ru.kuznetsov.shop.data.model.Address;
 import ru.kuznetsov.shop.data.model.Product;
 import ru.kuznetsov.shop.data.model.Stock;

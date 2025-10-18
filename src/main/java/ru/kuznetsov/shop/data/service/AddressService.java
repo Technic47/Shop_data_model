@@ -1,7 +1,7 @@
 package ru.kuznetsov.shop.data.service;
 
 import org.springframework.stereotype.Service;
-import ru.kuznetsov.shop.data.dto.AddressDto;
+import ru.kuznetsov.shop.represent.dto.AddressDto;
 import ru.kuznetsov.shop.data.mapper.AddressMapper;
 import ru.kuznetsov.shop.data.model.Address;
 import ru.kuznetsov.shop.data.repository.AddressRepository;

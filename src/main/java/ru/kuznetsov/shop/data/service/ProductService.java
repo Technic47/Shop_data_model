@@ -3,7 +3,7 @@ package ru.kuznetsov.shop.data.service;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import ru.kuznetsov.shop.data.dto.ProductDto;
+import ru.kuznetsov.shop.represent.dto.ProductDto;
 import ru.kuznetsov.shop.data.mapper.ProductMapper;
 import ru.kuznetsov.shop.data.model.Product;
 import ru.kuznetsov.shop.data.repository.ProductRepository;

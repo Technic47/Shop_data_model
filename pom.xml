@@ -5,11 +5,11 @@
     <parent>
         <groupId>io.github.technic47</groupId>
         <artifactId>shop-spring-boot-starter</artifactId>
-        <version>1.0.3</version>
+        <version>1.0.4</version>
     </parent>
 
     <artifactId>data-model</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>data-model</description>
     <url>https://github.com/Technic47/Shop_data_model</url>
@@ -48,7 +48,12 @@
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
-            <version>${mapstruct-version}</version>
+            <version>${mapstruct.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.technic47</groupId>
+            <artifactId>data-model-dto</artifactId>
+            <version>${data-model-dto.version}</version>
         </dependency>
 
         <dependency>
@@ -73,7 +78,7 @@
                         <path>
                             <groupId>org.mapstruct</groupId>
                             <artifactId>mapstruct-processor</artifactId>
-                            <version>${mapstruct-version}</version>
+                            <version>${mapstruct.version}</version>
                         </path>
                         <path>
                             <groupId>org.projectlombok</groupId>

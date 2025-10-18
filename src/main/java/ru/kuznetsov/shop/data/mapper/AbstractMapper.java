@@ -1,7 +1,7 @@
 package ru.kuznetsov.shop.data.mapper;
 
-import ru.kuznetsov.shop.data.dto.AbstractDto;
 import ru.kuznetsov.shop.data.model.AbstractEntity;
+import ru.kuznetsov.shop.represent.dto.AbstractDto;
 
 import java.util.List;
 
