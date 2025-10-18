@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>io.github.technic47</groupId>
         <artifactId>shop-spring-boot-starter</artifactId>
@@ -10,7 +11,8 @@
 
     <artifactId>data-model</artifactId>
     <version>1.0.6</version>
-    <name>${project.groupId}:${project.artifactId}</name>
+
+    <name>data-model</name>
     <description>data-model</description>
     <url>https://github.com/Technic47/Shop_data_model</url>
     <inceptionYear>2025</inceptionYear>
