@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "product")
 @Data
@@ -15,6 +17,8 @@ public class Product extends AbstractEntity {
     private String description;
     @Column(name = "price")
     private Integer price;
+    @Column(name = "owner_id")
+    private UUID owner;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

@@ -8,6 +8,9 @@ import ru.kuznetsov.shop.data.mapper.ProductMapper;
 import ru.kuznetsov.shop.data.model.Product;
 import ru.kuznetsov.shop.data.repository.ProductRepository;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 public class ProductService extends AbstractService<Product, ProductDto, ProductRepository, ProductMapper> {
 
@@ -25,5 +28,9 @@ public class ProductService extends AbstractService<Product, ProductDto, Product
     @CacheEvict(value = "PRODUCT_CACHE")
     public void deleteById(Long id) {
         super.deleteById(id);
+    }
+
+    public List<ProductDto> findAllByOwnerId(UUID ownerId) {
+        return entityMapper.allEntitiesToDtos(repository.findAllByOwner(ownerId));
     }
 }

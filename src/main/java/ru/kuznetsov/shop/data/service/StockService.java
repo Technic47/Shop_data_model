@@ -7,11 +7,16 @@ import ru.kuznetsov.shop.data.model.Stock;
 import ru.kuznetsov.shop.data.repository.StockRepository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class StockService extends AbstractService<Stock, StockDto, StockRepository, StockMapper> {
     protected StockService(StockRepository repository, StockMapper mapper) {
         super(repository, mapper);
+    }
+
+    public List<StockDto> findAllByStoreIdAndOwnerId(Long storeId, UUID ownerId) {
+        return entityMapper.allEntitiesToDtos(repository.findAllByProductIdAndOwnerId(storeId, ownerId));
     }
 
     public List<StockDto> findAllByStoreId(Long storeId) {

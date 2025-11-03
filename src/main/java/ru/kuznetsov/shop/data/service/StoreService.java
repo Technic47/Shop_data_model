@@ -7,6 +7,7 @@ import ru.kuznetsov.shop.data.model.Store;
 import ru.kuznetsov.shop.data.repository.StoreRepository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class StoreService extends AbstractService<Store, StoreDto, StoreRepository, StoreMapper> {
@@ -26,5 +27,9 @@ public class StoreService extends AbstractService<Store, StoreDto, StoreReposito
 
     public List<StoreDto> findByAddressId(Long addressId) {
         return entityMapper.allEntitiesToDtos(repository.findAllByAddressId(addressId));
+    }
+
+    public List<StoreDto> findAllByOwnerId(UUID ownerId) {
+        return entityMapper.allEntitiesToDtos(repository.findAllByOwner(ownerId));
     }
 }
