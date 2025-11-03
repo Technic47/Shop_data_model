@@ -17,10 +17,12 @@ public abstract class StoreMapper implements AbstractMapper<Store, StoreDto> {
     @Override
     @Mapping(target = "addressId", source = "entity.address.id")
     @Mapping(target = "address", source = "entity.address", qualifiedByName = "getAddressString")
+    @Mapping(target = "ownerId", expression = "java(entity.getOwner().toString())")
     public abstract StoreDto entityToDto(Store entity);
 
     @Override
     @Mapping(target = "address", source = "dto.addressId", qualifiedByName = "idToAddress")
+    @Mapping(target = "owner", expression = "java(UUID.fromString(dto.getOwnerId()))")
     public abstract Store dtoToEntity(StoreDto dto);
 
     @Named("getAddressString")
