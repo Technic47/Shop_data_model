@@ -11,13 +11,15 @@ import java.util.UUID;
 @Repository
 public interface StockRepository extends AbstractRepository<Stock> {
 
-    @Query(value = "select * from stock " +
+    @Query(value = "select stock.* from stock " +
             "join product on stock.product_id = product.id " +
-            "where stock.product_id = :productId " +
-            "and priduct.owner_id = :ownerId",
+            "where (:productId is null or stock.product_id = :productId) " +
+            "and (:storeId is null or stock.store_id = :storeId) " +
+            "and (:ownerId is null or product.owner_id = :ownerId)",
             nativeQuery = true)
-    List<Stock> findAllByProductIdAndOwnerId(
+    List<Stock> findAllByOptionalParams(
             @Param("productId") Long productId,
+            @Param("storeId") Long storeId,
             @Param("ownerId") UUID ownerId);
 
     List<Stock> findAllByProductId(Long productId);
