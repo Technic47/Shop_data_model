@@ -25,8 +25,4 @@ public interface StoreRepository extends AbstractRepository<Store> {
             @Param("ownerId") UUID ownerId);
 
     Optional<Store> findByName(String name);
-
-    List<Store> findAllByAddressId(Long addressId);
-
-    List<Store> findAllByOwner(UUID owner);
 }
