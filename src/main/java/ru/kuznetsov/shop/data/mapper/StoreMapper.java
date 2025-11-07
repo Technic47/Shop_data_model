@@ -4,12 +4,10 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.kuznetsov.shop.represent.dto.StoreDto;
 import ru.kuznetsov.shop.data.model.Address;
 import ru.kuznetsov.shop.data.model.Store;
 import ru.kuznetsov.shop.data.service.AddressService;
-
-import java.util.UUID;
+import ru.kuznetsov.shop.represent.dto.StoreDto;
 
 @Mapper(componentModel = "spring")
 public abstract class StoreMapper implements AbstractMapper<Store, StoreDto> {
@@ -19,12 +17,10 @@ public abstract class StoreMapper implements AbstractMapper<Store, StoreDto> {
     @Override
     @Mapping(target = "addressId", source = "entity.address.id")
     @Mapping(target = "address", source = "entity.address", qualifiedByName = "getAddressString")
-    @Mapping(target = "ownerId", source = "owner", qualifiedByName = "UUIDToString")
     public abstract StoreDto entityToDto(Store entity);
 
     @Override
     @Mapping(target = "address", source = "dto.addressId", qualifiedByName = "idToAddress")
-    @Mapping(target = "owner", source = "ownerId", qualifiedByName = "stringToUUID")
     public abstract Store dtoToEntity(StoreDto dto);
 
     @Named("getAddressString")
@@ -35,15 +31,5 @@ public abstract class StoreMapper implements AbstractMapper<Store, StoreDto> {
     @Named("idToAddress")
     protected Address idToAddress(Long id) {
         return addressService.findEntityById(id);
-    }
-
-    @Named("UUIDToString")
-    protected String UUIDToString(UUID uuid) {
-        return uuid.toString();
-    }
-
-    @Named("stringToUUID")
-    protected UUID stringToUUID(String uuidString) {
-        return UUID.fromString(uuidString);
     }
 }
