@@ -23,8 +23,10 @@ public class Order extends AbstractEntity {
     @Column(name = "total_sum")
     private Long totalSum;
     @Column(name = "delivery_type")
+    @Enumerated(EnumType.STRING)
     private DeliveryType deliveryType;
     @Column(name = "payment_type")
+    @Enumerated(EnumType.STRING)
     private PaymentType paymentType;
     @Column(name = "customer_delivery_address")
     private String customerDeliveryAddress;

@@ -1,8 +1,6 @@
 package ru.kuznetsov.shop.data.model.order;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import ru.kuznetsov.shop.data.model.AbstractEntity;
@@ -16,6 +14,7 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 public class OrderStatus extends AbstractEntity {
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private OrderStatusType status;
     @Column(name = "status_changer_id")
     private UUID statusChangerId;
