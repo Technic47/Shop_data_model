@@ -13,7 +13,7 @@ import ru.kuznetsov.shop.data.model.order.Order;
 import ru.kuznetsov.shop.data.service.AddressService;
 import ru.kuznetsov.shop.represent.dto.order.OrderDto;
 
-@Mapper(componentModel = "spring", uses = {ProductMapper.class, ProductCategoryMapper.class, AddressMapper.class})
+@Mapper(componentModel = "spring", uses = {ProductMapper.class, ProductCategoryMapper.class, AddressMapper.class, BucketItemMapper.class})
 public abstract class OrderMapper implements AbstractMapper<Order, OrderDto> {
 
     @Autowired

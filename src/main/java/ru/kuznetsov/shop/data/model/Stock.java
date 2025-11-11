@@ -11,6 +11,8 @@ import lombok.EqualsAndHashCode;
 public class Stock extends AbstractEntity {
     @Column(name = "amount")
     private Integer amount;
+    @Column(name = "is_reserved")
+    private Boolean isReserved;
 
     @ManyToOne
     @JoinColumn(name = "product_id")

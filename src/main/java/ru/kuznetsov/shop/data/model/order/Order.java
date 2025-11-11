@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import ru.kuznetsov.shop.data.model.AbstractEntity;
 import ru.kuznetsov.shop.data.model.Address;
-import ru.kuznetsov.shop.data.model.Product;
 import ru.kuznetsov.shop.represent.enums.DeliveryType;
 import ru.kuznetsov.shop.represent.enums.PaymentType;
 
@@ -36,7 +35,7 @@ public class Order extends AbstractEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private Address deliveryAddress;
     @ManyToMany
-    private Set<Product> products;
+    private Set<BucketItem> bucket;
     @OneToMany
     private Set<OrderStatus> statusList;
 }
