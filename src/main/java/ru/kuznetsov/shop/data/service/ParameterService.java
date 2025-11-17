@@ -36,4 +36,21 @@ public class ParameterService {
     public void deleteById(Long id) {
         parameterRepository.deleteById(id);
     }
+
+    public String getParameterValueString(String key){
+        return getParameterValue(key);
+    }
+
+    public Long getParameterValueLong(String key){
+        String parameterValue = getParameterValue(key);
+        try {
+            return Long.parseLong(parameterValue);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("Parameter value parsing error. " + e.getMessage());
+        }
+    }
+
+    private String getParameterValue(String key){
+        return findByKey(key).orElseThrow(() -> new RuntimeException("Parameter with key " + key + " not found")).getValue();
+    }
 }
