@@ -10,7 +10,7 @@ import ru.kuznetsov.shop.data.model.AbstractEntity;
 import java.util.UUID;
 
 @Entity
-@Table(name = "bucket_item")
+@Table(name = "shop_bucket_item")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class BucketItem extends AbstractEntity {

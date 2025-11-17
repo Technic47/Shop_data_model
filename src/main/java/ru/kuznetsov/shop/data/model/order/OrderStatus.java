@@ -9,7 +9,7 @@ import ru.kuznetsov.shop.represent.enums.OrderStatusType;
 import java.util.UUID;
 
 @Entity
-@Table(name = "order_status")
+@Table(name = "shop_order_status")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class OrderStatus extends AbstractEntity {

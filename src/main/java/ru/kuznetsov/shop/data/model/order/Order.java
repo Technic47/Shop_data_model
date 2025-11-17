@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "order")
+@Table(name = "shop_order")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Order extends AbstractEntity {
