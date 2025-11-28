@@ -3,10 +3,10 @@ package ru.kuznetsov.shop.data.service;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import ru.kuznetsov.shop.represent.dto.ProductDto;
 import ru.kuznetsov.shop.data.mapper.ProductMapper;
 import ru.kuznetsov.shop.data.model.Product;
 import ru.kuznetsov.shop.data.repository.ProductRepository;
+import ru.kuznetsov.shop.represent.dto.ProductDto;
 
 import java.util.List;
 import java.util.UUID;
@@ -30,7 +30,7 @@ public class ProductService extends AbstractService<Product, ProductDto, Product
         super.deleteById(id);
     }
 
-    public List<ProductDto> findAllByOwnerId(UUID ownerId) {
-        return entityMapper.allEntitiesToDtos(repository.findAllByOwner(ownerId));
+    public List<ProductDto> findAllByOwnerOrCategoryId(UUID ownerId, Long categoryId) {
+        return entityMapper.allEntitiesToDtos(repository.findAllByOwnerIdOrCategory(ownerId, categoryId));
     }
 }

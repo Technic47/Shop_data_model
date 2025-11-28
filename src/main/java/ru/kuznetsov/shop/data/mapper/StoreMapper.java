@@ -4,12 +4,13 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.springframework.beans.factory.annotation.Autowired;
+import ru.kuznetsov.shop.data.mapper.util.UUIDToStringConverter;
 import ru.kuznetsov.shop.data.model.Address;
 import ru.kuznetsov.shop.data.model.Store;
 import ru.kuznetsov.shop.data.service.AddressService;
 import ru.kuznetsov.shop.represent.dto.StoreDto;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {UUIDToStringConverter.class})
 public abstract class StoreMapper implements AbstractMapper<Store, StoreDto> {
     @Autowired
     protected AddressService addressService;
@@ -17,10 +18,12 @@ public abstract class StoreMapper implements AbstractMapper<Store, StoreDto> {
     @Override
     @Mapping(target = "addressId", source = "entity.address.id")
     @Mapping(target = "address", source = "entity.address", qualifiedByName = "getAddressString")
+    @Mapping(target = "ownerId", source = "owner")
     public abstract StoreDto entityToDto(Store entity);
 
     @Override
     @Mapping(target = "address", source = "dto.addressId", qualifiedByName = "idToAddress")
+    @Mapping(target = "owner", source = "ownerId")
     public abstract Store dtoToEntity(StoreDto dto);
 
     @Named("getAddressString")

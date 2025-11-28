@@ -1,15 +1,17 @@
 package ru.kuznetsov.shop.data.mapper.util;
 
-import org.mapstruct.Mapper;
-import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-@Mapper(componentModel = "spring")
-public abstract class UUIDToStringConverter implements Converter<UUID, String> {
+@Component
+public class UUIDToStringConverter {
 
-    @Override
-    public String convert(UUID source) {
+    public String UUIDToString(UUID source) {
         return source.toString();
+    }
+
+    public UUID StringToUUID(String source) {
+        return UUID.fromString(source);
     }
 }
