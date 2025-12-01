@@ -12,7 +12,7 @@ import java.util.UUID;
 @Repository
 public interface StoreRepository extends AbstractRepository<Store> {
 
-    @Query(value = "select stock.* from store " +
+    @Query(value = "select store.* from store " +
             "where (:id is null or store.id = :id) " +
             "and (:name is null or store.name = :name) " +
             "and (:addressId is null or store.address_id = :addressId)" +
