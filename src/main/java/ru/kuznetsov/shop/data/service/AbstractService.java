@@ -54,7 +54,7 @@ public abstract class AbstractService
         dto.setCreated(LocalDateTime.now());
         dto.setUpdated(LocalDateTime.now());
         var added = repository
-                .saveAndFlush(entityMapper.dtoToEntity(dto));
+                .save(entityMapper.dtoToEntity(dto));
         return entityMapper.entityToDto(added);
     }
 
