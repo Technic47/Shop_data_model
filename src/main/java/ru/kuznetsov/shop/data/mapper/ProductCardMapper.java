@@ -31,7 +31,7 @@ public abstract class ProductCardMapper {
         Map<String, Integer> stockMap = new HashMap<>();
 
         List<StockDto> stockDtoList = stockService.findAllByOptionalParams(product.getId(), null, product.getOwner()).stream()
-                .filter(stock -> !stock.getIsReserved())
+                .filter(stock -> stock.getIsReserved() == null || !stock.getIsReserved())
                 .toList();
 
         for (StockDto stockDto : stockDtoList) {

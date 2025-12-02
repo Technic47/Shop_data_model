@@ -8,10 +8,10 @@ import java.util.UUID;
 public class UUIDToStringConverter {
 
     public String UUIDToString(UUID source) {
-        return source.toString();
+        return source == null ? "" : source.toString();
     }
 
     public UUID StringToUUID(String source) {
-        return UUID.fromString(source);
+        return source == null ? null : UUID.fromString(source);
     }
 }
