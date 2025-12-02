@@ -8,7 +8,6 @@ import ru.kuznetsov.shop.data.model.Address;
 import ru.kuznetsov.shop.represent.enums.DeliveryType;
 import ru.kuznetsov.shop.represent.enums.PaymentType;
 
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -34,8 +33,4 @@ public class Order extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Address deliveryAddress;
-    @ManyToMany
-    private Set<BucketItem> bucket;
-    @OneToMany
-    private Set<OrderStatus> statusList;
 }
