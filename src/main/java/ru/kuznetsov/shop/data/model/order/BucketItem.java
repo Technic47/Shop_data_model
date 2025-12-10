@@ -16,6 +16,8 @@ import java.util.UUID;
 public class BucketItem extends AbstractEntity {
     @Column(name = "product_id")
     private Long productId;
+    @Column(name = "owner_id")
+    private String ownerId;
     @Column(name = "amount")
     private Integer amount;
     @Column(name = "order_id")

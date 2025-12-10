@@ -20,4 +20,9 @@ public interface ProductRepository extends AbstractRepository<Product> {
     List<Product> findAllByOwnerIdOrCategory(
             @Param("ownerId") UUID ownerId,
             @Param("categoryId") Long categoryId);
+
+    @Query(value = "select product.owner_id from product " +
+            "where product.id = :id",
+            nativeQuery = true)
+    String getOwnerId(Long id);
 }

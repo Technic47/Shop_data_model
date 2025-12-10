@@ -6,11 +6,11 @@
     <parent>
         <groupId>io.github.technic47</groupId>
         <artifactId>shop-spring-boot-starter</artifactId>
-        <version>1.0.25</version>
+        <version>1.0.27</version>
     </parent>
 
     <artifactId>data-model</artifactId>
-    <version>1.0.19</version>
+    <version>1.0.20</version>
 
     <name>data-model</name>
     <description>data-model</description>
@@ -39,7 +39,6 @@
     <properties>
         <skipTests>true</skipTests>
     </properties>
-
 
     <dependencies>
         <dependency>

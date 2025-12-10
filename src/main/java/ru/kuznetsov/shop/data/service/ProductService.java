@@ -33,4 +33,10 @@ public class ProductService extends AbstractService<Product, ProductDto, Product
     public List<ProductDto> findAllByOwnerOrCategoryId(UUID ownerId, Long categoryId) {
         return entityMapper.allEntitiesToDtos(repository.findAllByOwnerIdOrCategory(ownerId, categoryId));
     }
+
+    public String getOwner(Long id) {
+        if (repository.existsById(id)) {
+            return repository.getOwnerId(id);
+        } else throw new RuntimeException(String.format("Product с id=%s не существует", id));
+    }
 }
