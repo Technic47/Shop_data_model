@@ -13,6 +13,8 @@ public class Stock extends AbstractEntity {
     private Integer amount;
     @Column(name = "is_reserved")
     private Boolean isReserved;
+    @Column(name = "reservation_order_id")
+    private Long reservationOrderId;
 
     @ManyToOne
     @JoinColumn(name = "product_id")

@@ -18,4 +18,8 @@ public class StockService extends AbstractService<Stock, StockDto, StockReposito
     public List<StockDto> findAllByOptionalParams(Long productId, Long storeId, UUID ownerId) {
         return entityMapper.allEntitiesToDtos(repository.findAllByOptionalParams(productId, storeId, ownerId));
     }
+
+    public List<StockDto> findAllByReservationOrderId(Long orderId) {
+        return entityMapper.allEntitiesToDtos(repository.findAllByReservationOrderId(orderId));
+    }
 }

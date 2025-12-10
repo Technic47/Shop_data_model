@@ -21,4 +21,6 @@ public interface StockRepository extends AbstractRepository<Stock> {
             @Param("productId") Long productId,
             @Param("storeId") Long storeId,
             @Param("ownerId") UUID ownerId);
+
+    List<Stock> findAllByReservationOrderId(Long reservationOrderId);
 }
