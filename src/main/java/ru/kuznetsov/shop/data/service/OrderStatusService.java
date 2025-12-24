@@ -5,6 +5,7 @@ import ru.kuznetsov.shop.data.mapper.order.OrderStatusMapper;
 import ru.kuznetsov.shop.data.model.order.OrderStatus;
 import ru.kuznetsov.shop.data.repository.OrderStatusRepository;
 import ru.kuznetsov.shop.represent.dto.order.OrderStatusDto;
+import ru.kuznetsov.shop.represent.enums.OrderStatusType;
 
 import java.util.Comparator;
 import java.util.List;
@@ -25,5 +26,9 @@ public class OrderStatusService extends AbstractService<OrderStatus, OrderStatus
                 .sorted(Comparator.comparing(OrderStatusDto::getCreated).reversed())
                 .toList()
                 .get(0);
+    }
+
+    public List<OrderStatusDto> getAllByStatus(OrderStatusType status) {
+        return entityMapper.allEntitiesToDtos(repository.getAllByStatus(status));
     }
 }
