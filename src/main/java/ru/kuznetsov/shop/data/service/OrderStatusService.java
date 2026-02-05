@@ -1,5 +1,6 @@
 package ru.kuznetsov.shop.data.service;
 
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
 import ru.kuznetsov.shop.data.mapper.order.OrderStatusMapper;
 import ru.kuznetsov.shop.data.model.order.OrderStatus;
@@ -11,6 +12,7 @@ import java.util.Comparator;
 import java.util.List;
 
 @Service
+@CacheConfig("ORDER_STATUS_CACHE")
 public class OrderStatusService extends AbstractService<OrderStatus, OrderStatusDto, OrderStatusRepository, OrderStatusMapper> {
     protected OrderStatusService(OrderStatusRepository repository, OrderStatusMapper mapper) {
         super(repository, mapper);

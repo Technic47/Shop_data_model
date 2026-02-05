@@ -1,6 +1,7 @@
 package ru.kuznetsov.shop.data.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -22,10 +23,12 @@ public class ProductPagingAndSortingService {
         return repository.findAll(pageable).map(mapper::entityToDto);
     }
 
+    @Cacheable("PRODUCT_CARD_PAGE_CACHE")
     public Page<ProductCardDto> findAllByCategoryOrOwnerIdPageable(UUID ownerId, Long categoryId, Pageable pageable) {
         return repository.findAllByOwnerIdOrCategoryPageable(ownerId, categoryId, pageable).map(mapper::entityToDto);
     }
 
+    @Cacheable("PRODUCT_CARD_CACHE")
     public Collection<ProductCardDto> findAllByCategoryOrOwnerId(UUID ownerId, Long categoryId) {
         return repository.findAllByOwnerIdOrCategory(ownerId, categoryId).stream().map(mapper::entityToDto).toList();
     }
