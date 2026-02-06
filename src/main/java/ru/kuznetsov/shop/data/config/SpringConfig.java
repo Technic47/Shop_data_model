@@ -79,7 +79,7 @@ public class SpringConfig {
                 .entryTtl(Duration.ofMinutes(10))
                 .disableCachingNullValues()
                 .serializeValuesWith(RedisSerializationContext.SerializationPair
-                        .fromSerializer(new GenericJackson2JsonRedisSerializer(objectMapper())));
+                        .fromSerializer(new GenericJackson2JsonRedisSerializer(getCacheObjectMapper())));
 
         return RedisCacheManager
                 .builder(factory)
@@ -90,8 +90,16 @@ public class SpringConfig {
     @Bean
     @Primary
     public ObjectMapper objectMapper() {
+        return getCommonObjectMapper(false);
+    }
+
+    public ObjectMapper getCacheObjectMapper() {
+        return getCommonObjectMapper(true);
+    }
+
+    private ObjectMapper getCommonObjectMapper(Boolean includeTypeInfo) {
         var mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
+
         var simpleModule = new SimpleModule();
         simpleModule.addSerializer(OffsetDateTime.class, new JsonSerializer<>() {
             @Override
@@ -99,11 +107,17 @@ public class SpringConfig {
                 jsonGenerator.writeString(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX").format(offsetDateTime));
             }
         });
+
+        mapper.registerModule(new JavaTimeModule());
         mapper.registerModule(simpleModule);
         mapper.configure(FAIL_ON_UNKNOWN_PROPERTIES, false);
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-        mapper.activateDefaultTyping(mapper.getPolymorphicTypeValidator(), ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
+
+        if (includeTypeInfo) {
+            mapper.activateDefaultTyping(mapper.getPolymorphicTypeValidator(), ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
+        }
+
         return mapper;
     }
 }
