@@ -1,9 +1,6 @@
 package ru.kuznetsov.shop.data.service;
 
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
 import ru.kuznetsov.shop.data.mapper.StoreMapper;
 import ru.kuznetsov.shop.data.model.Store;
@@ -22,19 +19,39 @@ public class StoreService extends AbstractService<Store, StoreDto, StoreReposito
     }
 
     @Override
-    @CachePut(key = "#dto.id")
+    @CachePut(key = "#result.id")
+    @Caching(
+            evict = {
+                    @CacheEvict(key = "#id"),
+                    @CacheEvict(key = "'ALL_VALUES'"),
+                    @CacheEvict(value = "STORE_OPTIONAL_PARAMS", allEntries = true)
+            }
+    )
     public StoreDto add(StoreDto dto) {
         return super.add(dto);
     }
 
     @Override
-    @CachePut(key = "#dto.id")
+    @CachePut(key = "#result.id")
+    @Caching(
+            evict = {
+                    @CacheEvict(key = "#id"),
+                    @CacheEvict(key = "'ALL_VALUES'"),
+                    @CacheEvict(value = "STORE_OPTIONAL_PARAMS", allEntries = true)
+            }
+    )
     public StoreDto update(StoreDto dto) {
         return super.update(dto);
     }
 
     @Override
-    @CacheEvict
+    @Caching(
+            evict = {
+                    @CacheEvict(key = "#id"),
+                    @CacheEvict(key = "'ALL_VALUES'"),
+                    @CacheEvict(value = "STORE_OPTIONAL_PARAMS", allEntries = true)
+            }
+    )
     public void deleteById(Long id) {
         super.deleteById(id);
     }
@@ -45,8 +62,13 @@ public class StoreService extends AbstractService<Store, StoreDto, StoreReposito
         return super.findById(id);
     }
 
+    @Override
+    @Cacheable(key = "'ALL_VALUES'")
+    public List<StoreDto> findAll() {
+        return super.findAll();
+    }
 
-    @Cacheable
+    @Cacheable("STORE_OPTIONAL_PARAMS")
     public List<StoreDto> findAllByOptionalParams(Long id,
                                                   String name,
                                                   Long addressId,

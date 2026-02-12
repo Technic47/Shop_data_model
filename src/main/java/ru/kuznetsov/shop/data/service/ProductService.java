@@ -25,21 +25,52 @@ public class ProductService extends AbstractService<Product, ProductDto, Product
     }
 
     @Override
-    @CacheEvict
+    @Caching(
+            evict = {
+                    @CacheEvict(key = "#id"),
+                    @CacheEvict(key = "'ALL_VALUES'"),
+                    @CacheEvict(value = "PRODUCT_CARD_CACHE", allEntries = true),
+                    @CacheEvict(value = "PRODUCT_CARD_PAGE_CACHE", allEntries = true),
+                    @CacheEvict(value = "PRODUCT_CARD_PAGE_CACHE_OPTIONAL", allEntries = true),
+                    @CacheEvict(value = "STOCK_OPTIONAL_PARAMS", allEntries = true)
+            }
+    )
     public void deleteById(Long id) {
         super.deleteById(id);
     }
 
     @Override
-    @CachePut(key = "#dto.id")
+    @CachePut(key = "#result.id")
+    @Caching(
+            evict = {
+                    @CacheEvict(key = "'ALL_VALUES'"),
+                    @CacheEvict(value = "PRODUCT_CARD_CACHE", allEntries = true),
+                    @CacheEvict(value = "PRODUCT_CARD_PAGE_CACHE", allEntries = true),
+                    @CacheEvict(value = "PRODUCT_CARD_PAGE_CACHE_OPTIONAL", allEntries = true)
+            }
+    )
     public ProductDto add(ProductDto dto) {
         return super.add(dto);
     }
 
     @Override
-    @CachePut(key = "#dto.id")
+    @CachePut(key = "#result.id")
+    @Caching(
+            evict = {
+                    @CacheEvict(key = "'ALL_VALUES'"),
+                    @CacheEvict(value = "PRODUCT_CARD_CACHE", allEntries = true),
+                    @CacheEvict(value = "PRODUCT_CARD_PAGE_CACHE", allEntries = true),
+                    @CacheEvict(value = "PRODUCT_CARD_PAGE_CACHE_OPTIONAL", allEntries = true)
+            }
+    )
     public ProductDto update(ProductDto dto) {
         return super.update(dto);
+    }
+
+    @Override
+    @Cacheable(key = "'ALL_VALUES'")
+    public List<ProductDto> findAll() {
+        return super.findAll();
     }
 
     @Cacheable

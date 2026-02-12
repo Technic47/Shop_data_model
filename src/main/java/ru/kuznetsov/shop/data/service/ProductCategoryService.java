@@ -1,14 +1,11 @@
 package ru.kuznetsov.shop.data.service;
 
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
-import ru.kuznetsov.shop.represent.dto.ProductCategoryDto;
 import ru.kuznetsov.shop.data.mapper.ProductCategoryMapper;
 import ru.kuznetsov.shop.data.model.ProductCategory;
 import ru.kuznetsov.shop.data.repository.ProductCategoryRepository;
+import ru.kuznetsov.shop.represent.dto.ProductCategoryDto;
 
 import java.util.List;
 
@@ -26,25 +23,32 @@ public class ProductCategoryService extends AbstractService<ProductCategory, Pro
     }
 
     @Override
-    @CacheEvict
+    @Caching(
+            evict = {
+                    @CacheEvict(key = "#id"),
+                    @CacheEvict(key = "'ALL_VALUES'")
+            }
+    )
     public void deleteById(Long id) {
         super.deleteById(id);
     }
 
     @Override
-    @CachePut(key = "#dto.id")
+    @CachePut(key = "#result.id")
+    @CacheEvict(key = "'ALL_VALUES'")
     public ProductCategoryDto add(ProductCategoryDto dto) {
         return super.add(dto);
     }
 
     @Override
-    @CachePut(key = "#dto.id")
+    @CachePut(key = "#result.id")
+    @CacheEvict(key = "'ALL_VALUES'")
     public ProductCategoryDto update(ProductCategoryDto dto) {
         return super.update(dto);
     }
 
     @Override
-    @Cacheable
+    @Cacheable(key = "'ALL_VALUES'")
     public List<ProductCategoryDto> findAll() {
         return super.findAll();
     }

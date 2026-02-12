@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
 public abstract class AbstractService
@@ -43,7 +44,7 @@ public abstract class AbstractService
             return repository.findAll()
                     .stream()
                     .map(entityMapper::entityToDto)
-                    .toList();
+                    .collect(Collectors.toList());
         } catch (Exception e) {
             log.error(e.getMessage());
         }
