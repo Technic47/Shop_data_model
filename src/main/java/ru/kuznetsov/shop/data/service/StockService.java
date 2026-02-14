@@ -19,12 +19,14 @@ public class StockService extends AbstractService<Stock, StockDto, StockReposito
     }
 
     @Override
-    @CachePut(key = "#result.id")
     @Caching(
             evict = {
                     @CacheEvict(key = "'ALL_VALUES'"),
                     @CacheEvict(value = "STOCK_OPTIONAL_PARAMS", allEntries = true),
                     @CacheEvict(value = "STOCK_RESERVATION", allEntries = true)
+            },
+            put = {
+                    @CachePut(key = "#result.id")
             }
     )
     public StockDto add(StockDto dto) {
@@ -32,12 +34,14 @@ public class StockService extends AbstractService<Stock, StockDto, StockReposito
     }
 
     @Override
-    @CachePut(key = "#result.id")
     @Caching(
             evict = {
                     @CacheEvict(key = "'ALL_VALUES'"),
                     @CacheEvict(value = "STOCK_OPTIONAL_PARAMS", allEntries = true),
                     @CacheEvict(value = "STOCK_RESERVATION", allEntries = true)
+            },
+            put = {
+                    @CachePut(key = "#result.id")
             }
     )
     public StockDto update(StockDto dto) {

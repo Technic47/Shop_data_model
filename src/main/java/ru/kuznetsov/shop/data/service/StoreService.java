@@ -19,12 +19,13 @@ public class StoreService extends AbstractService<Store, StoreDto, StoreReposito
     }
 
     @Override
-    @CachePut(key = "#result.id")
     @Caching(
             evict = {
-                    @CacheEvict(key = "#id"),
                     @CacheEvict(key = "'ALL_VALUES'"),
                     @CacheEvict(value = "STORE_OPTIONAL_PARAMS", allEntries = true)
+            },
+            put = {
+                    @CachePut(key = "#result.id")
             }
     )
     public StoreDto add(StoreDto dto) {
@@ -32,12 +33,13 @@ public class StoreService extends AbstractService<Store, StoreDto, StoreReposito
     }
 
     @Override
-    @CachePut(key = "#result.id")
     @Caching(
             evict = {
-                    @CacheEvict(key = "#id"),
                     @CacheEvict(key = "'ALL_VALUES'"),
                     @CacheEvict(value = "STORE_OPTIONAL_PARAMS", allEntries = true)
+            },
+            put = {
+                    @CachePut(key = "#result.id")
             }
     )
     public StoreDto update(StoreDto dto) {

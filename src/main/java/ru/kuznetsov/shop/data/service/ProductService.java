@@ -40,13 +40,15 @@ public class ProductService extends AbstractService<Product, ProductDto, Product
     }
 
     @Override
-    @CachePut(key = "#result.id")
     @Caching(
             evict = {
                     @CacheEvict(key = "'ALL_VALUES'"),
                     @CacheEvict(value = "PRODUCT_CARD_CACHE", allEntries = true),
                     @CacheEvict(value = "PRODUCT_CARD_PAGE_CACHE", allEntries = true),
                     @CacheEvict(value = "PRODUCT_CARD_PAGE_CACHE_OPTIONAL", allEntries = true)
+            },
+            put = {
+                    @CachePut(key = "#result.id")
             }
     )
     public ProductDto add(ProductDto dto) {
@@ -54,13 +56,15 @@ public class ProductService extends AbstractService<Product, ProductDto, Product
     }
 
     @Override
-    @CachePut(key = "#result.id")
     @Caching(
             evict = {
                     @CacheEvict(key = "'ALL_VALUES'"),
                     @CacheEvict(value = "PRODUCT_CARD_CACHE", allEntries = true),
                     @CacheEvict(value = "PRODUCT_CARD_PAGE_CACHE", allEntries = true),
                     @CacheEvict(value = "PRODUCT_CARD_PAGE_CACHE_OPTIONAL", allEntries = true)
+            },
+            put = {
+                    @CachePut(key = "#result.id")
             }
     )
     public ProductDto update(ProductDto dto) {

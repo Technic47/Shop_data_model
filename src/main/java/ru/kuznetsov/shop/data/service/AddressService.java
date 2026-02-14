@@ -18,15 +18,27 @@ public class AddressService extends AbstractService<Address, AddressDto, Address
     }
 
     @Override
-    @CachePut(key = "#result.id")
-    @CacheEvict(key = "'ALL_VALUES'")
+    @Caching(
+            evict = {
+                    @CacheEvict(key = "'ALL_VALUES'")
+            },
+            put = {
+                    @CachePut(key = "#result.id")
+            }
+    )
     public AddressDto add(AddressDto dto) {
         return super.add(dto);
     }
 
     @Override
-    @CachePut(key = "#result.id")
-    @CacheEvict(key = "'ALL_VALUES'")
+    @Caching(
+            evict = {
+                    @CacheEvict(key = "'ALL_VALUES'")
+            },
+            put = {
+                    @CachePut(key = "#result.id")
+            }
+    )
     public AddressDto update(AddressDto dto) {
         return super.update(dto);
     }
