@@ -55,7 +55,7 @@ public class AddressService extends AbstractService<Address, AddressDto, Address
     }
 
     @Override
-    @Cacheable
+    @Cacheable(unless="#result == null")
     public AddressDto findById(Long id) {
         return super.findById(id);
     }

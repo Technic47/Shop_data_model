@@ -17,7 +17,7 @@ public class ProductCategoryService extends AbstractService<ProductCategory, Pro
     }
 
     @Override
-    @Cacheable
+    @Cacheable(unless="#result == null")
     public ProductCategoryDto findById(Long id) {
         return super.findById(id);
     }

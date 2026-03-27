@@ -19,7 +19,7 @@ public class ProductService extends AbstractService<Product, ProductDto, Product
     }
 
     @Override
-    @Cacheable
+    @Cacheable(unless="#result == null")
     public ProductDto findById(Long id) {
         return super.findById(id);
     }

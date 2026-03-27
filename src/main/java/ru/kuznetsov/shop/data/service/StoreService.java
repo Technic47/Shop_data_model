@@ -59,7 +59,7 @@ public class StoreService extends AbstractService<Store, StoreDto, StoreReposito
     }
 
     @Override
-    @Cacheable
+    @Cacheable(unless="#result == null")
     public StoreDto findById(Long id) {
         return super.findById(id);
     }

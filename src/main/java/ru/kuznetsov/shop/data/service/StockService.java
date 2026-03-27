@@ -62,7 +62,7 @@ public class StockService extends AbstractService<Stock, StockDto, StockReposito
     }
 
     @Override
-    @Cacheable
+    @Cacheable(unless="#result == null")
     public StockDto findById(Long id) {
         return super.findById(id);
     }

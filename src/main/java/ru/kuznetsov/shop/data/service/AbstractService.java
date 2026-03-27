@@ -107,6 +107,6 @@ public abstract class AbstractService
 
     public E findEntityById(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException(String.format("%s с id=%s не существует", getEntitySimpleName(), id)));
+                .orElse(null);
     }
 }
