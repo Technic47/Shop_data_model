@@ -8,6 +8,7 @@ import ru.kuznetsov.shop.data.repository.OrderStatusRepository;
 import ru.kuznetsov.shop.represent.dto.order.OrderStatusDto;
 import ru.kuznetsov.shop.represent.enums.OrderStatusType;
 
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 
@@ -32,5 +33,13 @@ public class OrderStatusService extends AbstractService<OrderStatus, OrderStatus
 
     public List<OrderStatusDto> getAllByStatus(OrderStatusType status) {
         return entityMapper.allEntitiesToDtos(repository.getAllByStatus(status));
+    }
+
+    public List<OrderStatusDto> getAllByStatusAfter(OrderStatusType status, LocalDateTime dateTimeAfter) {
+        return entityMapper.allEntitiesToDtos(repository.getAllByStatusAndCreatedAfter(status, dateTimeAfter));
+    }
+
+    public List<OrderStatusDto> getAllByStatusBefore(OrderStatusType status, LocalDateTime dateTimeBefore) {
+        return entityMapper.allEntitiesToDtos(repository.getAllByStatusAndCreatedBefore(status, dateTimeBefore));
     }
 }
