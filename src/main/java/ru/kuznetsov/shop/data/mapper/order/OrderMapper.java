@@ -16,6 +16,7 @@ import ru.kuznetsov.shop.data.service.OrderStatusService;
 import ru.kuznetsov.shop.represent.dto.order.BucketItemDto;
 import ru.kuznetsov.shop.represent.dto.order.OrderDto;
 import ru.kuznetsov.shop.represent.dto.order.OrderStatusDto;
+import ru.kuznetsov.shop.represent.dto.order.OrderThinDto;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -39,6 +40,9 @@ public abstract class OrderMapper implements AbstractMapper<Order, OrderDto> {
     @Override
     @Mapping(target = "deliveryAddress", source = "deliveryAddressId", qualifiedByName = "setDeliveryAddressToEntity")
     public abstract Order dtoToEntity(OrderDto dto);
+
+    @Mapping(target = "deliveryAddressId", source = "deliveryAddress", qualifiedByName = "setDeliveryAddressToDto")
+    public abstract OrderThinDto entityToThinDto(Order entity);
 
     @Named("setDeliveryAddressToDto")
     protected Long setDeliveryAddressToDto(Address deliveryAddress) {
