@@ -1,6 +1,7 @@
 package ru.kuznetsov.shop.data.service;
 
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.data.domain.Limit;
 import org.springframework.stereotype.Service;
 import ru.kuznetsov.shop.data.mapper.order.OrderStatusMapper;
 import ru.kuznetsov.shop.data.model.order.OrderStatus;
@@ -35,11 +36,23 @@ public class OrderStatusService extends AbstractService<OrderStatus, OrderStatus
         return entityMapper.allEntitiesToDtos(repository.getAllByStatus(status));
     }
 
-    public List<OrderStatusDto> getAllByStatusAfter(OrderStatusType status, LocalDateTime dateTimeAfter) {
-        return entityMapper.allEntitiesToDtos(repository.getAllByStatusAndCreatedAfter(status, dateTimeAfter));
+    public List<OrderStatusDto> getAllByStatusAfter(OrderStatusType status, LocalDateTime dateTimeAfter, Integer limit) {
+        return entityMapper.allEntitiesToDtos(
+                repository.getAllByStatusAndCreatedAfter(
+                        status,
+                        dateTimeAfter,
+                        limit == null ? Limit.unlimited() : Limit.of(limit)
+                )
+        );
     }
 
-    public List<OrderStatusDto> getAllByStatusBefore(OrderStatusType status, LocalDateTime dateTimeBefore) {
-        return entityMapper.allEntitiesToDtos(repository.getAllByStatusAndCreatedBefore(status, dateTimeBefore));
+    public List<OrderStatusDto> getAllByStatusBefore(OrderStatusType status, LocalDateTime dateTimeBefore, Integer limit) {
+        return entityMapper.allEntitiesToDtos(
+                repository.getAllByStatusAndCreatedBefore(
+                        status,
+                        dateTimeBefore,
+                        limit == null ? Limit.unlimited() : Limit.of(limit)
+                )
+        );
     }
 }
